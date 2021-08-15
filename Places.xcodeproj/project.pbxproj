@@ -15,6 +15,7 @@
 		7532C8A526C87C50005CBB30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7532C8A326C87C50005CBB30 /* LaunchScreen.storyboard */; };
 		7532C8B026C87C50005CBB30 /* PlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532C8AF26C87C50005CBB30 /* PlacesTests.swift */; };
 		7532C8BA26C87C50005CBB30 /* PlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7532C8B926C87C50005CBB30 /* PlacesUITests.swift */; };
+		753F7B1326C9A2F500DA14CE /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F7B1226C9A2F500DA14CE /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7532C8AF26C87C50005CBB30 /* PlacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTests.swift; sourceTree = "<group>"; };
 		7532C8B526C87C50005CBB30 /* PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7532C8B926C87C50005CBB30 /* PlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesUITests.swift; sourceTree = "<group>"; };
+		753F7B1226C9A2F500DA14CE /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				7532C89826C87C4C005CBB30 /* AppDelegate.swift */,
 				7532C89A26C87C4C005CBB30 /* SceneDelegate.swift */,
 				7532C89C26C87C4C005CBB30 /* ViewController.swift */,
+				753F7B1226C9A2F500DA14CE /* ResultsViewController.swift */,
 				7532C89E26C87C4C005CBB30 /* Main.storyboard */,
 				7532C8A126C87C50005CBB30 /* Assets.xcassets */,
 				7532C8A326C87C50005CBB30 /* LaunchScreen.storyboard */,
@@ -258,6 +261,7 @@
 				7532C89D26C87C4C005CBB30 /* ViewController.swift in Sources */,
 				7532C89926C87C4C005CBB30 /* AppDelegate.swift in Sources */,
 				7532C89B26C87C4C005CBB30 /* SceneDelegate.swift in Sources */,
+				753F7B1326C9A2F500DA14CE /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
