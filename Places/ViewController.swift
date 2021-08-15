@@ -43,10 +43,23 @@ class ViewController: UIViewController, UISearchResultsUpdating {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        
-        
+        // Get the query text out of search controller
+        guard let query = searchController.searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+                  return
+                  
+        }
+        // Call API
+        GooglePlacesManager.shared.findPlaces(
+            query: query) { result in
+            switch result {
+            case .success(let places):
+                print(places)
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
     }
-
-
 }
 
