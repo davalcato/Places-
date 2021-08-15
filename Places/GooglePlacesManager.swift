@@ -36,7 +36,6 @@ final class GooglePlacesManager {
         query: String,
         completion: @escaping (Result<[Place], Error>) -> Void
     
-    
     ) {
         // Basis of Geocode
         let filter = GMSAutocompleteFilter()
@@ -46,14 +45,12 @@ final class GooglePlacesManager {
             fromQuery: query,
             filter: filter,
             sessionToken: nil
-            
             // optional array of predictions
         ) { results, error in
             guard let results = results, error == nil else {
                 completion(.failure(PlacesError.failedToFind))
                 return
             }
-            
             // Use results to create array of place models
             let places: [Place] = results.compactMap({
                 Place(

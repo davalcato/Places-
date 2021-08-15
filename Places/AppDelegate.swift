@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  Places
-//
+//  rickholmes544@gmail.com
 //  Created by Daval Cato on 8/14/21.
 //
 
@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        GMSPlacesClient.provideAPIKey("AIzaSyC7CTYPaFQbj0QMI-ELg5w-CpvKJWqFOMc")
+        GMSPlacesClient.provideAPIKey("AIzaSyAAd2U8gc3XyfgHFmkW0ZlLSQVByPm6p2s")
         
 //        GooglePlacesManager.shared.setUp()
         
