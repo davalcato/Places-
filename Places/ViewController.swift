@@ -39,7 +39,8 @@ class ViewController: UIViewController, UISearchResultsUpdating {
             x: 0,
             y: view.safeAreaInsets.top,
             width: view.frame.size.width,
-            height: view.frame.size.height - view.safeAreaInsets.top)
+            height: view.frame.size.height - view.safeAreaInsets.top
+        )
     }
     
     func updateSearchResults(for searchController: UISearchController) {

@@ -7,6 +7,8 @@
 
 import Foundation
 import GooglePlaces
+import CoreLocationUI
+import CoreLocation
 
 // Create model
 struct Place {
@@ -28,6 +30,7 @@ final class GooglePlacesManager {
     // Custom error enum
     enum PlacesError: Error {
         case failedToFind
+        case failedToGetCoordinates
         
     }
     
@@ -60,6 +63,29 @@ final class GooglePlacesManager {
             })
             // Call completion helder
             completion(.success(places))
+        }
+    }
+    // Add function
+    public func resolveLocation(
+        for place: Place,
+        completion: @escaping (Result<CLLocationCoordinate2D, Error>) -> Void
+    
+    ) {
+        client.fetchPlace(
+            fromPlaceID: place.identifier,
+            placeFields: .coordinate,
+            sessionToken: nil
+        ) { googlePlace, error in
+            guard let googlePlace = googlePlace, error == nil else {
+                completion(.failure(PlacesError.failedToGetCoordinates))
+                return
+            }
+            // Create core location coordinate
+            let coordinate = CLLocationCoordinate2D(
+                latitude: googlePlace.coordinate.latitude,
+                longitude: googlePlace.coordinate.longitude
+            )
+            completion(.success(coordinate))
         }
     }
 }

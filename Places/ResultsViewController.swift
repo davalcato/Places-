@@ -52,6 +52,18 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Get rid of results
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let place = places[indexPath.row]
+        // Convert this place into a coordinate
+        GooglePlacesManager.shared.resolveLocation(
+            for: place) { result in
+            switch result {
+            case .success(let coordinate):
+                break
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
     }
-    
 }
