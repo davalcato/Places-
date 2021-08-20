@@ -49,8 +49,10 @@ class ViewController: UIViewController, UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty,
         let resultsVC = searchController.searchResultsController as? ResultsViewController else {
                   return
-                  
         }
+        // update UI
+        resultsVC.delegate = self
+        
         // Call API
         GooglePlacesManager.shared.findPlaces(
             query: query) { result in
@@ -61,13 +63,36 @@ class ViewController: UIViewController, UISearchResultsUpdating {
                     resultsVC.update(with: places)
                 }
                 
-                
-                
             case .failure(let error):
                 print(error)
                 
             }
         }
     }
+}
+
+extension ViewController: ResultsViewControllerDelegate {
+    // Single function
+    func didTapPlace(with coordinates: CLLocationCoordinate2D) {
+        searchVC.searchBar.resignFirstResponder()
+        // Remove all map pins
+        let annotations = mapView.annotations
+        mapView.removeAnnotation(annotations)
+        
+        // Add a map pin
+        let pin = MKPointAnnotation()
+        pin.coordinate = coordinates
+        mapView.addAnnotation(pin)
+        mapView.setRegion(
+            MKCoordinateRegion(
+                center: coordinates,
+                span: MKCoordinateSpan(
+                    latitudeDelta: 0.2,
+                    longitudeDelta: 0.2
+                )),
+            animated: true)
+        
+    }
+    
 }
 

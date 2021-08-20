@@ -6,8 +6,17 @@
 //
 
 import UIKit
+import CoreLocation
+
+protocol ResultsViewControllerDelegate: AnyObject {
+    // Single function 
+    func didTapPlace(with coordinates: CLLocationCoordinate2D)
+    
+}
 
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    weak var delegate: ResultsViewControllerDelegate?
     
     // Tableview
     private let tableview: UITableView = {
@@ -22,6 +31,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableview)
+        view.backgroundColor = .clear
         tableview.delegate = self
         tableview.dataSource = self
     }
@@ -32,6 +42,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     public func update(with places: [Place]) {
+        self.tableview.isHidden = false
         self.places = places
         print(places.count)
         // Reload
@@ -53,13 +64,20 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        // Get rid of places
+        tableView.isHidden = true
+        
         let place = places[indexPath.row]
         // Convert this place into a coordinate
         GooglePlacesManager.shared.resolveLocation(
-            for: place) { result in
+            for: place) { [weak self] result in
             switch result {
             case .success(let coordinate):
-                break
+                // Call on the main thread
+                DispatchQueue.main.async {
+                    self?.delegate?.didTapPlace(with: coordinate)
+                }
+                
             case .failure(let error):
                 print(error)
                 
